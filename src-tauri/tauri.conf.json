@@ -1,25 +1,26 @@
 {
   "build": {
     "beforeDevCommand": "pnpm run dev",
-    "beforeBuildCommand": "pnpm run build",
-    "devPath": "../src",
-    "withGlobalTauri": true
+    "beforeBuildCommand": "pnpm run build"
   },
-  "package": {
-    "productName": "Spotify Tauri",
-    "version": "0.2.0"
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
   },
-  "tauri": {
-    "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
-        "open": true
-      },
-      "window": {
-        "all": true
-      }
-    },
+  "productName": "Spotify",
+  "mainBinaryName": "Spotify",
+  "version": "0.3.0",
+  "identifier": "red.knownas.spotify-tauri",
+  "plugins": {},
+  "app": {
+    "withGlobalTauri": true,
     "windows": [
       {
         "title": "Spotify Tauri",
@@ -27,30 +28,12 @@
         "height": 600,
         "url": "https://accounts.spotify.com/en/login?continue=https%3A%2F%2Fopen.spotify.com%2F",
         "theme": "Dark",
-        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15"
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15",
+        "useHttpsScheme": true
       }
     ],
     "security": {
-      "csp": null,
-      "dangerousRemoteDomainIpcAccess": [
-        {
-          "domain": "open.spotify.com",
-          "windows": ["main"],
-          "enableTauriAPI": false
-        }
-      ]
-    },
-    "bundle": {
-      "active": true,
-      "targets": "all",
-      "identifier": "tw.hayden.spotify-tauri",
-      "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
-      ]
+      "csp": null
     }
   }
 }

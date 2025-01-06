@@ -1,0 +1,9 @@
+{
+  "$schema": "../gen/schemas/remote-schema.json",
+  "identifier": "disable-tauri-api-spotify",
+  "windows": ["main"],
+  "remote": {
+    "urls": ["https://open.spotify.com"]
+  },
+  "permissions": []
+}

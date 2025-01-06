@@ -15,8 +15,9 @@ fn open_url(url: &str) {
 
 fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_shell::init())
         .setup(|app| {
-            let _main_window = app.app_handle().get_window("main").unwrap();
+            let _main_window = app.app_handle().get_webview_window("main").unwrap();
 
             // open devtools if is debug build
             #[cfg(debug_assertions)]
@@ -25,13 +26,13 @@ fn main() {
             Ok(())
         })
         .on_page_load(|window, _payload| {
-            if window.label() == "main" && window.url().host_str() == Some("open.spotify.com") {
+            if window.label() == "main" && window.url().unwrap().host_str() == Some("open.spotify.com") {
                 // inject js
                 window
                     .eval(
                         format!(
                             "var AppName = '{}'; var AppVersion = '{}'; var AppRepositoryUrl = '{}';",
-                            window.app_handle().package_info().package_name(),
+                            window.app_handle().package_info().name,
                             window.app_handle().package_info().version.to_string(),
                             REPOSITORY_URL
                         )
